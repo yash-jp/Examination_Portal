@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gladiator"
+        android:id="@+id/latvMainTitle"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80sp"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/latvMainTitle"
+        android:text="The Examination Portal"
+        android:id="@+id/latvSubTitle"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10sp"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/latvLoginAs"
+        android:text="Login As"
+        android:textSize="25sp"
+        android:layout_below="@+id/latvSubTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80sp"></TextView>
+
+<!--    <RadioGroup-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/latvLoginAs"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:id="@+id/larg"-->
+<!--        android:layout_centerHorizontal="true">-->
+
+<!--        <RadioButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/larbExamee"-->
+<!--            android:textSize="25sp"-->
+<!--            android:text="Examee">-->
+<!--        </RadioButton>-->
+
+<!--        <RadioButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/larbExameOrganizer"-->
+<!--            android:textSize="25sp"-->
+<!--            android:text="Exame Organizer">-->
+<!--        </RadioButton>-->
+<!--    </RadioGroup>-->
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/laetEmail"
+        android:hint="Please enter email"
+        android:layout_below="@+id/latvSubTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20sp"
+        android:layout_marginTop="35sp"></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/laetPassword"
+        android:hint="Please enter email"
+        android:layout_below="@+id/laetEmail"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:layout_marginHorizontal="20sp"
+        android:layout_marginTop="25sp"></EditText>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/labtnLogin"
+        android:layout_below="@+id/laetPassword"
+        android:layout_centerHorizontal="true"
+        android:text="Login"></Button>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/latvForgotPassword"
+        android:layout_below="@+id/labtnLogin"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:text="Forgot Password?"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/latvRegister"
+        android:layout_below="@+id/latvForgotPassword"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:text="Not Registered?Please Register"></TextView>
+</RelativeLayout>

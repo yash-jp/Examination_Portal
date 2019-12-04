@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/satvMainTitle"
+        android:text="Sign Up"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50sp"></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/satvSignUpAs"
+        android:text="Sign Up As"
+        android:textSize="25sp"
+        android:layout_below="@+id/satvMainTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80sp"></TextView>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/satvSignUpAs"
+        android:orientation="horizontal"
+        android:id="@+id/sarg"
+        android:layout_centerHorizontal="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sarbExamee"
+            android:textSize="25sp"
+            android:text="Examee">
+        </RadioButton>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sarbExameOrganizer"
+            android:textSize="25sp"
+            android:checked="true"
+            android:text="Exame Organizer">
+        </RadioButton>
+    </RadioGroup>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter email"
+        android:layout_below="@+id/sarg"
+        android:layout_marginHorizontal="20sp"
+        android:id="@+id/saetEmail"></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter Password"
+        android:layout_below="@+id/saetEmail"
+        android:layout_marginHorizontal="20sp"
+        android:inputType="textPassword"
+        android:id="@+id/saetPassword"></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter confirm password"
+        android:layout_below="@+id/saetPassword"
+        android:layout_marginHorizontal="20sp"
+        android:inputType="textPassword"
+        android:id="@+id/saetConfirmPassword"></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter Organization Name"
+        android:layout_below="@+id/saetConfirmPassword"
+        android:layout_marginHorizontal="20sp"
+        android:inputType="textPassword"
+        android:id="@+id/saetOrgName"></EditText>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sabtnRegister"
+        android:layout_below="@+id/saetOrgName"
+        android:layout_centerHorizontal="true"
+        android:text="Register"></Button>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/satvLogin"
+        android:text="Login"
+        android:layout_below="@+id/sabtnRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10sp"></TextView>
+</RelativeLayout>
