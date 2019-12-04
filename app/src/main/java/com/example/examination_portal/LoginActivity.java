@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextView latvForgotPassword,latvRegister;
     ProgressBar loading;
 
-    private String URL_LOGIN = "http://192.168.0.24/android_scripts/connection1.php";
+    private String URL_LOGIN = "http://192.168.0.24/android_scripts/login.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,15 +98,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final String useremail = this.laetEmail.getText().toString().trim();
         final String password = this.laetPassword.getText().toString().trim();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_LOGIN, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
                     loading.setVisibility(View.GONE);
-
                     Log.e("loginActivity", "onResponse: "+success);
+
+//                    write code to go to next page
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -117,16 +119,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Log.e("loginActivity", error.getMessage().toString());
                         loading.setVisibility(View.GONE);
                     }
-                });
-////        {
-////            @Override
-////            protected Map<String, String> getParams() throws AuthFailureError {
-////                Map<String,String> params = new HashMap<>();
-////                params.put("useremail",useremail);
-////                params.put("password",password);
-////                return params;
-////            }
-////        };
+                })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("useremail",useremail);
+                params.put("password",password);
+                return params;
+            }
+        };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
