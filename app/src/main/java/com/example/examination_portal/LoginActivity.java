@@ -3,6 +3,7 @@ package com.example.examination_portal;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +39,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button labtnLogin;
     TextView latvForgotPassword,latvRegister;
     ProgressBar loading;
+    Context context;
+    RelativeLayout root;
 
     private String URL_LOGIN = "http://192.168.0.24/android_scripts/login.php";
 
@@ -58,6 +63,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void initialization() {
 //        larbExamee = findViewById(R.id.larbExamee);
 //        larbExameOrganizer = findViewById(R.id.larbExameOrganizer);
+        context = this;
+        root = findViewById(R.id.root);
         loading = findViewById(R.id.loading);
         laetEmail = findViewById(R.id.laetEmail);
         laetPassword = findViewById(R.id.laetPassword);
@@ -103,11 +110,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(String response) {
                 try{
                     JSONObject jsonObject = new JSONObject(response);
-                    String success = jsonObject.getString("success");
+                    String message = jsonObject.getString("message");
                     loading.setVisibility(View.GONE);
-                    Log.e("loginActivity", "onResponse: "+success);
+                    Log.e("loginActivity", "onResponse: "+message);
 
 //                    write code to go to next page
+                    if(message.equals("success")){
+                        Intent intent = new Intent(context,GroupActivity.class);
+                        startActivity(intent);
+                    }else{
+                        final Snackbar snackbar = Snackbar.make(root, "Not valid username and/or password", Snackbar.LENGTH_INDEFINITE);
+                                snackbar.setAction("OK", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                       snackbar.dismiss();
+                                    }
+                                });;
+                        snackbar.show();
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
