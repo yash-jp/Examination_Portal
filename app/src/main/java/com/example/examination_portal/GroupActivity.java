@@ -41,6 +41,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
     GroupAdapter groupAdapter;
     private List<Group> groupList = new ArrayList<>();
     private String URL_GROUPLISTING = "http://192.168.0.24/android_scripts/showGroups.php";
+    private String URL_ADDGROUP = "http://192.168.0.24/android_scripts/addGroup.php";
 
 
     @Override
@@ -55,6 +56,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void getAllGroups() {
+        groupList.clear();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_GROUPLISTING, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -133,5 +135,42 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void addGroup() {
+        final String group_name = gaetGroupName.getText().toString().trim();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADDGROUP, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                     JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
+//                    loading.setVisibility(View.GONE);
+                    Log.e("groupActivity", "onResponse: "+success);
+
+//                    on success update the recyclerview
+                    getAllGroups();
+                    groupAdapter.notifyDataSetChanged();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("groupActivity", error.getMessage().toString());
+//                loading.setVisibility(View.GONE);
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("group_email","amar@gmail.com");
+                params.put("group_name",group_name);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }
