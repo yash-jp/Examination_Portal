@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.examination_portal.QuestionActivity;
 import com.example.examination_portal.R;
 import com.example.examination_portal.TestActivity;
 import com.example.examination_portal.model.Test;
@@ -67,9 +68,9 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestHolder>{
         @Override
         public void onClick(View view) {
 //            Toast.makeText(context,groupList.get(getAdapterPosition()).getGroupName(),Toast.LENGTH_LONG).show();
-//            Intent intent = new Intent(context, TestActivity.class);
-//            intent.putExtra("group_id",groupList.get(getAdapterPosition()).getGroupID());
-//            context.startActivity(intent);
+            Intent intent = new Intent(context, QuestionActivity.class);
+            intent.putExtra("test_id",testList.get(getAdapterPosition()).getTestID());
+            context.startActivity(intent);
         }
     }
 }

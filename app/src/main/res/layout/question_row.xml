@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please Enter Question"
+        android:layout_margin="10px"
+        android:lines="3"
+        android:id="@+id/qretQuestionSentence"></EditText>
+
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Enter Option A"
+    android:layout_below="@id/qretQuestionSentence"
+    android:id="@+id/qretOptionA"
+    android:layout_margin="5px"></EditText>
+
+    <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Enter Option B"
+    android:layout_below="@id/qretOptionA"
+    android:id="@+id/qretOptionB"
+    android:layout_margin="5px"></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Option C"
+        android:layout_below="@id/qretOptionB"
+        android:id="@+id/qretOptionC"
+        android:layout_margin="5px"></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Option D"
+        android:layout_below="@id/qretOptionC"
+        android:id="@+id/qretOptionD"
+        android:layout_margin="5px"></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Answer"
+        android:layout_below="@id/qretOptionD"
+        android:id="@+id/qretAnswer"
+        android:layout_margin="5px"></EditText>
+</RelativeLayout>
