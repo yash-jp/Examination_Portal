@@ -123,7 +123,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
 //        setup of recyclerview
 //        loadData();
         Log.e("GroupActivity","size - "+this.groupList.size());
-        groupAdapter = new GroupAdapter(groupList);
+        groupAdapter = new GroupAdapter(groupList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         garv.setLayoutManager(mLayoutManager);
         garv.setItemAnimator(new DefaultItemAnimator());

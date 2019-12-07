@@ -3,12 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/gretName"
         android:text="GROUP1"
         android:textSize="30sp"
         android:gravity="center"
-        android:layout_margin="20sp"></EditText>
+        android:layout_margin="20sp"></TextView>
 </LinearLayout>
