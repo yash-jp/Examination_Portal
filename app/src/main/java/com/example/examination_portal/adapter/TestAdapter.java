@@ -2,34 +2,30 @@ package com.example.examination_portal.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.examination_portal.R;
 import com.example.examination_portal.TestActivity;
-import com.example.examination_portal.model.Group;
+import com.example.examination_portal.model.Test;
 
 import java.util.List;
 
-public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>{
+public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestHolder>{
 
-    private List<Group> groupList;
+    private List<Test> testList;
     private Context context;
 
 //    SharedPreferences sharedPreferences;
 //    SharedPreferences.Editor editor;
 
-    public GroupAdapter(List<Group> groupList,Context context) {
-        this.groupList = groupList;
+    public TestAdapter(List<Test> groupList,Context context) {
+        this.testList = groupList;
         this.context = context;
 
 //        sharedPreferences = context.getApplicationContext().getSharedPreferences("UserPref",0);
@@ -38,29 +34,29 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
 
     @NonNull
     @Override
-    public GroupHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TestHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.group_row, parent, false);
 
-        return new GroupHolder(itemView);
+        return new TestHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GroupHolder holder, int position) {
-        Group group = groupList.get(position);
-        holder.grtvName.setText(group.getGroupName());
+    public void onBindViewHolder(@NonNull TestHolder holder, int position) {
+        Test test = testList.get(position);
+        holder.grtvName.setText(test.getTestName());
     }
 
     @Override
     public int getItemCount() {
-        return groupList.size();
+        return testList.size();
     }
 
-    public class GroupHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class TestHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView grtvName;
 
-        public GroupHolder(@NonNull View itemView) {
+        public TestHolder(@NonNull View itemView) {
             super(itemView);
             grtvName = itemView.findViewById(R.id.gretName);
 
@@ -71,9 +67,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
         @Override
         public void onClick(View view) {
 //            Toast.makeText(context,groupList.get(getAdapterPosition()).getGroupName(),Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(context, TestActivity.class);
-            intent.putExtra("group_id",groupList.get(getAdapterPosition()).getGroupID());
-            context.startActivity(intent);
+//            Intent intent = new Intent(context, TestActivity.class);
+//            intent.putExtra("group_id",groupList.get(getAdapterPosition()).getGroupID());
+//            context.startActivity(intent);
         }
     }
 }
