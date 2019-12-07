@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.examination_portal.model.Property;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
@@ -42,7 +44,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Context context;
     RelativeLayout root;
 
-    private String URL_LOGIN = "http://192.168.0.24/android_scripts/login.php";
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+    private String URL_LOGIN = "http://192.168.0.13/android_scripts/login.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         hideActionBar();
         initialization();
         eventsManagement();
+
+//        if user_email has been set inside the sharedpref then directly go to groups page acc to user type
+        sharedPreferences = getApplicationContext().getSharedPreferences("UserPref",0);
+        editor = sharedPreferences.edit();
+
+        if(sharedPreferences.getString(Property.user_email,null)!=null){
+            Intent intent = new Intent(context,GroupActivity.class);
+            startActivity(intent);
+        }
+
     }
 
     private void eventsManagement() {
@@ -117,6 +132,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                    write code to go to next page
                     if(message.equals("success")){
                         Intent intent = new Intent(context,GroupActivity.class);
+                        editor.putString(Property.user_email,useremail);
+
+//                        committing the changes
+                        editor.commit();
                         startActivity(intent);
                     }else{
                         final Snackbar snackbar = Snackbar.make(root, "Not valid username and/or password", Snackbar.LENGTH_INDEFINITE);

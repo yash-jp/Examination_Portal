@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.RecoverySystem;
 import android.util.Log;
@@ -23,6 +24,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.examination_portal.adapter.GroupAdapter;
 import com.example.examination_portal.model.Group;
+import com.example.examination_portal.model.Property;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -40,18 +42,28 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
     RecyclerView garv;
     GroupAdapter groupAdapter;
     private List<Group> groupList = new ArrayList<>();
-    private String URL_GROUPLISTING = "http://192.168.0.24/android_scripts/showGroups.php";
-    private String URL_ADDGROUP = "http://192.168.0.24/android_scripts/addGroup.php";
+    private String URL_GROUPLISTING = "http://192.168.0.13/android_scripts/showGroups.php";
+    private String URL_ADDGROUP = "http://192.168.0.13/android_scripts/addGroup.php";
+
+//    SHAREDPREFERENCE
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
+
+//        get shared preference
+        sharedPreferences = getApplicationContext().getSharedPreferences("UserPref",0);
+
         hideActionBar();
         getAllGroups();
-        initialization();
-        eventsManagement();
+
 
     }
 
@@ -70,6 +82,8 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
                         String groupName = jsonObject.getString("group_name");
                         groupList.add(new Group(groupID,groupName));
                     }
+                    initialization();
+                    eventsManagement();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -86,7 +100,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("group_email","amar@gmail.com");
+                params.put("group_email",sharedPreferences.getString(Property.user_email,null));
                 return params;
             }
         };
@@ -103,9 +117,12 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         gaetGroupName = findViewById(R.id.gaetGroupName);
         gabtnAdd = findViewById(R.id.gabtnAdd);
         garv = findViewById(R.id.garv);
-
+//        groupList = new ArrayList<>();
+//        this will fetch all the data from api
+//        getAllGroups();
 //        setup of recyclerview
 //        loadData();
+        Log.e("GroupActivity","size - "+this.groupList.size());
         groupAdapter = new GroupAdapter(groupList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         garv.setLayoutManager(mLayoutManager);
@@ -143,7 +160,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
                      JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
 //                    loading.setVisibility(View.GONE);
-                    Log.e("groupActivity", "onResponse: "+success);
+//                    Log.e("groupActivity", "onResponse: "+success);
 
 //                    on success update the recyclerview
                     getAllGroups();
@@ -164,7 +181,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("group_email","amar@gmail.com");
+                params.put("group_email",sharedPreferences.getString(Property.user_email,null));
                 params.put("group_name",group_name);
                 return params;
             }

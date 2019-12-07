@@ -35,7 +35,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     Button sabtnRegister;
     ProgressBar loading;
 
-    private String URL_SIGNUP = "http://192.168.0.24/android_scripts/signup.php";
+    private String URL_SIGNUP = "http://192.168.0.13/android_scripts/signup.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -15,7 +15,7 @@ import com.example.examination_portal.model.Group;
 
 import java.util.List;
 
-public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder> {
+public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>{
 
     private List<Group> groupList;
 
@@ -52,4 +52,5 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
             gretName = itemView.findViewById(R.id.gretName);
         }
     }
+
 }
