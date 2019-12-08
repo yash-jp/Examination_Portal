@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -16,11 +17,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.examination_portal.adapter.GroupAdapter;
-import com.example.examination_portal.adapter.TestAdapter;
-import com.example.examination_portal.model.Group;
+import com.example.examination_portal.adapter.EQuestionAdapter;
+import com.example.examination_portal.adapter.QuestionAdapter;
 import com.example.examination_portal.model.Property;
-import com.example.examination_portal.model.Test;
+import com.example.examination_portal.model.Question;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,29 +31,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestActivity extends AppCompatActivity {
-    private RecyclerView tarv;
-    private TestAdapter testAdapter;
+public class EQuestionActivity extends AppCompatActivity {
+    RecyclerView eqarv;
+//    Button eqabtnSubmit;
 
-    private List<Test> testList = new ArrayList<>();
-//    private String URL_ADDTEST = "http://192.168.0.13/android_scripts/showGroups.php";
-    private String URL_SHOWTEST = "http://10.111.2.226/android_scripts/showTests.php";
+    EQuestionAdapter eQuestionAdapter;
+
+    private List<Question> questionList = new ArrayList<>();
+    private String URL_SHOW_QUESTIONS = "http://10.111.2.226/android_scripts/showQuestions.php";
     Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
-
-        getAllTests();
+        setContentView(R.layout.activity_equestion);
 
         intent = getIntent();
-        Log.e("TestActivity",String.valueOf(intent.getIntExtra("group_id",0)));
+
+        getAllQuestions();
     }
 
-    private void getAllTests() {
-        testList.clear();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SHOWTEST, new Response.Listener<String>() {
+    private void getAllQuestions() {
+        questionList.clear();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SHOW_QUESTIONS, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try{
@@ -61,11 +61,18 @@ public class TestActivity extends AppCompatActivity {
 
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        Log.e("TestActivity",jsonObject.toString());
-                        int testID = jsonObject.getInt("test_id");
-                        String testName = jsonObject.getString("test_name");
-                        Log.e("TestActivity",testName);
-                        testList.add(new Test(testID,testName));
+//                        Log.e("QuestionActivity",jsonObject.toString());
+                        int questionID = jsonObject.getInt("question_id");
+                        int question_test_id = jsonObject.getInt("question_test_id");
+                        String questionSentence = jsonObject.getString("question_sentence");
+                        String question_opt_a = jsonObject.getString("question_opt_a");
+                        String question_opt_b = jsonObject.getString("question_opt_b");
+                        String question_opt_c = jsonObject.getString("question_opt_c");
+                        String question_opt_d = jsonObject.getString("question_opt_d");
+                        String question_answer = jsonObject.getString("question_answer");
+
+//                        Log.e("QuestionActivity",questionSentence);
+                        questionList.add(new Question(questionID,question_test_id,questionSentence,question_opt_a,question_opt_b,question_opt_c,question_opt_d,question_answer));
                     }
                     initialization();
                     eventsManagement();
@@ -85,7 +92,7 @@ public class TestActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("test_group_id",String.valueOf(intent.getIntExtra(Property.group_id,0)));
+                params.put("question_test_id",String.valueOf(intent.getIntExtra(Property.group_id,0)));
                 return params;
             }
         };
@@ -98,13 +105,14 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void initialization() {
-        tarv = findViewById(R.id.tarr);
+        eqarv = findViewById(R.id.eqarv);
+//        eqabtnSubmit = findViewById(R.id.eqabtnSubmit);
 
-        Log.e("TestActivity","size - "+this.testList.size());
-        testAdapter = new TestAdapter(testList,this);
+        eQuestionAdapter = new EQuestionAdapter(questionList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        tarv.setLayoutManager(mLayoutManager);
-        tarv.setItemAnimator(new DefaultItemAnimator());
-        tarv.setAdapter(testAdapter);
+        eqarv.setLayoutManager(mLayoutManager);
+        eqarv.setItemAnimator(new DefaultItemAnimator());
+        eqarv.setAdapter(eQuestionAdapter);
+
     }
 }

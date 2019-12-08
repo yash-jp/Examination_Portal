@@ -42,8 +42,8 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
     RecyclerView garv;
     GroupAdapter groupAdapter;
     private List<Group> groupList = new ArrayList<>();
-    private String URL_GROUPLISTING = "http://192.168.0.13/android_scripts/showGroups.php";
-    private String URL_ADDGROUP = "http://192.168.0.13/android_scripts/addGroup.php";
+    private String URL_GROUPLISTING = "http://10.111.2.226/android_scripts/showGroups.php";
+    private String URL_ADDGROUP = "http://10.111.2.226/android_scripts/addGroup.php";
 
 //    SHAREDPREFERENCE
     SharedPreferences sharedPreferences;

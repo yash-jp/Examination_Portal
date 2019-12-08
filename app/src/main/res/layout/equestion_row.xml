@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="3"
+        android:id="@+id/eqaQuestion"
+        android:textSize="20sp"
+        android:text="lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum"></TextView>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eqaQuestion"
+        android:id="@+id/eqaRG">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eqaOptionA"
+            android:checked="true"
+            android:text="option A"></RadioButton>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eqaOptionB"
+            android:text="option B"></RadioButton>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eqaOptionC"
+            android:text="option C"></RadioButton>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eqaOptionD"
+            android:text="option D"></RadioButton>
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eqaRG"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:id="@+id/eqabtnSubmit"
+        android:text="Submit"></Button>
+
+</RelativeLayout>

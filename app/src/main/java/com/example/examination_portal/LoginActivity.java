@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
-    private String URL_LOGIN = "http://192.168.0.13/android_scripts/login.php";
+    private String URL_LOGIN = "http://10.111.2.226/android_scripts/login.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
