@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@color/colorSecondary"
         android:id="@+id/ll">
 
         <EditText
@@ -19,7 +20,7 @@
             android:layout_weight="4"
             android:layout_margin="10sp"
             android:id="@+id/gaetGroupName"
-            android:textSize="25sp"></EditText>
+            android:textSize="25sp"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -28,13 +29,16 @@
             android:layout_weight="1"
             android:textSize="25sp"
             android:text="Add"
-            android:id="@+id/gabtnAdd"></Button>
+            android:id="@+id/gabtnAdd"
+            android:background="@color/colorSecondaryDark"
+            android:textColor="@color/colorSecondary"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/ll"
-        android:id="@+id/garv"></androidx.recyclerview.widget.RecyclerView>
+        android:id="@+id/garv"
+        android:background="@color/colorSecondary"/>
 
 </RelativeLayout>

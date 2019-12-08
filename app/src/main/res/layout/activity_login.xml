@@ -14,7 +14,8 @@
         android:id="@+id/latvMainTitle"
         android:textSize="40sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80sp"></TextView>
+        android:layout_marginTop="80sp"
+        android:textColor="@color/colorPrimary"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,62 +25,28 @@
         android:id="@+id/latvSubTitle"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10sp"></TextView>
-
-<!--    <TextView-->
-<!--        android:id="@+id/latvLoginAs"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/latvSubTitle"-->
-<!--        android:layout_marginTop="80sp"-->
-<!--        android:text="Login As"-->
-<!--        android:textSize="25sp"></TextView>-->
-
-<!--    <RadioGroup-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/latvLoginAs"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:id="@+id/larg"-->
-<!--        android:layout_centerHorizontal="true">-->
-
-<!--        <RadioButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/larbExamee"-->
-<!--            android:textSize="25sp"-->
-<!--            android:text="Examee">-->
-<!--        </RadioButton>-->
-
-<!--        <RadioButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/larbExameOrganizer"-->
-<!--            android:textSize="25sp"-->
-<!--            android:text="Exame Organizer">-->
-<!--        </RadioButton>-->
-<!--    </RadioGroup>-->
+        android:layout_marginTop="10sp"
+        android:textColor="@color/colorPrimary"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/laetEmail"
-        android:hint="Please enter email"
+        android:hint="Email"
         android:layout_below="@+id/latvSubTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="20sp"
-        android:layout_marginTop="35sp"></EditText>
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="30dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/laetPassword"
-        android:hint="Please enter email"
+        android:hint="Password"
         android:layout_below="@+id/laetEmail"
         android:layout_centerHorizontal="true"
         android:inputType="textPassword"
-        android:layout_marginHorizontal="20sp"
-        android:layout_marginTop="25sp"></EditText>
+        android:layout_margin="20dp"/>
 
     <ProgressBar
         android:id="@+id/loading"
@@ -95,7 +62,8 @@
         android:id="@+id/labtnLogin"
         android:layout_below="@+id/laetPassword"
         android:layout_centerHorizontal="true"
-        android:text="Login"></Button>
+        android:text="Login"
+        android:background="@color/colorSecondary"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -104,7 +72,8 @@
         android:layout_below="@+id/labtnLogin"
         android:textSize="15sp"
         android:layout_centerHorizontal="true"
-        android:text="Forgot Password?"></TextView>
+        android:text="Forgot Password?"
+        android:textColor="@color/colorSecondaryDark"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -113,5 +82,7 @@
         android:layout_below="@+id/latvForgotPassword"
         android:textSize="15sp"
         android:layout_centerHorizontal="true"
-        android:text="Not Registered?Please Register"></TextView>
+        android:text="Not Registered?Please Register"
+        android:textColor="@color/colorSecondaryDark"/>
+
 </RelativeLayout>
