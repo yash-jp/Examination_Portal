@@ -36,7 +36,7 @@ public class QuestionActivity extends AppCompatActivity {
     RecyclerView qarr;
 
     private List<Question> questionList = new ArrayList<>();
-    private String URL_SHOW_QUESTIONS = "http://192.168.0.13/android_scripts/showQuestions.php";
+    private String URL_SHOW_QUESTIONS = "http://10.111.2.226/android_scripts/showQuestions.php";
     Intent intent;
 
     @Override
