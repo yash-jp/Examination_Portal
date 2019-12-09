@@ -108,7 +108,7 @@ public class EQuestionActivity extends AppCompatActivity {
         eqarv = findViewById(R.id.eqarv);
 //        eqabtnSubmit = findViewById(R.id.eqabtnSubmit);
 
-        eQuestionAdapter = new EQuestionAdapter(questionList,this);
+        eQuestionAdapter = new EQuestionAdapter(questionList,this,intent);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         eqarv.setLayoutManager(mLayoutManager);
         eqarv.setItemAnimator(new DefaultItemAnimator());

@@ -10,6 +10,16 @@ public class Question {
     String optionD;
     String questionAnswer;
 
+    public String getAnswerSelected() {
+        return answerSelected;
+    }
+
+    public void setAnswerSelected(String answerSelected) {
+        this.answerSelected = answerSelected;
+    }
+
+    String answerSelected;
+
     public Question(int questionID, int questionTestID, String questionSentence, String optionA, String optionB, String optionC, String optionD, String questionAnswer) {
         this.questionID = questionID;
         this.questionTestID = questionTestID;
@@ -19,6 +29,7 @@ public class Question {
         this.optionC = optionC;
         this.optionD = optionD;
         this.questionAnswer = questionAnswer;
+        this.answerSelected = "a";
     }
 
     public int getQuestionID() {
