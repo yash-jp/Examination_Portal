@@ -8,11 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,12 +23,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.examination_portal.R;
-import com.example.examination_portal.model.Answer;
 import com.example.examination_portal.model.Property;
 import com.example.examination_portal.model.Question;
-import com.example.examination_portal.model.Test;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,7 +35,6 @@ import java.util.Map;
 
 public class EQuestionAdapter extends RecyclerView.Adapter<EQuestionAdapter.EQuestionHolder> {
     private List<Question> questionList;
-//    private List<Answer> answers;
     private Context context;
     private Intent intent;
 
@@ -173,23 +167,6 @@ public class EQuestionAdapter extends RecyclerView.Adapter<EQuestionAdapter.EQue
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-//                    try{
-
-
-//                        for(int i=0;i<jsonArray.length();i++){
-//                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-//                            Log.e("TestActivity",jsonObject.toString());
-//                            int testID = jsonObject.getInt("test_id");
-//                            String testName = jsonObject.getString("test_name");
-//                            Log.e("TestActivity",testName);
-////                            testList.add(new Test(testID,testName));
-//                        }
-//                        initialization();
-//                        eventsManagement();
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
                 }
             }, new Response.ErrorListener() {
                 @Override

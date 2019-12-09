@@ -69,7 +69,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestHolder>{
         @Override
         public void onClick(View view) {
 //            Toast.makeText(context,groupList.get(getAdapterPosition()).getGroupName(),Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(context, EQuestionActivity.class);
+            Intent intent = new Intent(context, QuestionActivity.class);
             intent.putExtra("test_id",testList.get(getAdapterPosition()).getTestID());
             context.startActivity(intent);
         }
