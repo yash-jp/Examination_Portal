@@ -1,4 +1,4 @@
-package com.example.examination_portal;
+package com.example.examination_portal.organizer;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.examination_portal.R;
 import com.example.examination_portal.adapter.GroupAdapter;
 import com.example.examination_portal.model.Group;
 import com.example.examination_portal.model.Property;
@@ -42,8 +43,8 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
     RecyclerView garv;
     GroupAdapter groupAdapter;
     private List<Group> groupList = new ArrayList<>();
-    private String URL_GROUPLISTING = "http://10.111.2.226/android_scripts/showGroups.php";
-    private String URL_ADDGROUP = "http://10.111.2.226/android_scripts/addGroup.php";
+    private String URL_GROUPLISTING = Property.domain+"showGroups.php";
+    private String URL_ADDGROUP = Property.domain+"addGroup.php";
 
 //    SHAREDPREFERENCE
     SharedPreferences sharedPreferences;

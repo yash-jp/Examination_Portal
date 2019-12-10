@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.examination_portal.model.Property;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     Button sabtnRegister;
     ProgressBar loading;
 
-    private String URL_SIGNUP = "http://10.111.2.226/android_scripts/signup.php";
+    private String URL_SIGNUP = Property.domain+"signup.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

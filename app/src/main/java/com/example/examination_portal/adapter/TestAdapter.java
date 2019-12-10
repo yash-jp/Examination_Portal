@@ -10,10 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.examination_portal.EQuestionActivity;
-import com.example.examination_portal.QuestionActivity;
+import com.example.examination_portal.organizer.QuestionActivity;
 import com.example.examination_portal.R;
-import com.example.examination_portal.TestActivity;
 import com.example.examination_portal.model.Test;
 
 import java.util.List;

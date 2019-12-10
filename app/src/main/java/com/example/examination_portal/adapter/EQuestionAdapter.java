@@ -43,7 +43,7 @@ public class EQuestionAdapter extends RecyclerView.Adapter<EQuestionAdapter.EQue
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
-    private String URL_ADDRESULT = "http://10.111.2.226/android_scripts/addResult.php";
+    private String URL_ADDRESULT = Property.domain+"addResult.php";
 
     float percentage;
 

@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,16 +21,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.examination_portal.model.Property;
+import com.example.examination_portal.organizer.GroupActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
-    private String URL_LOGIN = "http://10.111.2.226/android_scripts/login.php";
+    private String URL_LOGIN = Property.domain+"login.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editor = sharedPreferences.edit();
 
         if(sharedPreferences.getString(Property.user_email,null)!=null){
-            Intent intent = new Intent(context,GroupActivity.class);
+            Intent intent = new Intent(context, GroupActivity.class);
             startActivity(intent);
         }
 

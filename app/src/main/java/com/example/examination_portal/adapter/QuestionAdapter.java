@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.examination_portal.R;
 import com.example.examination_portal.model.Group;
+import com.example.examination_portal.model.Property;
 import com.example.examination_portal.model.Question;
 
 import org.json.JSONException;
@@ -35,8 +36,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
     private Context context;
 
 //   APIs
-    private String URL_QUESTION_UPDATE = "http://10.111.2.226/android_scripts/updateQuestion.php";
-    private String URL_QUESTION_DELETE = "http://10.111.2.226/android_scripts/deleteQuestion.php";
+    private String URL_QUESTION_UPDATE = Property.domain+"updateQuestion.php";
+    private String URL_QUESTION_DELETE =Property.domain+"deleteQuestion.php";
 
     public QuestionAdapter(List<Question> questionList, Context context) {
         this.questionList = questionList;

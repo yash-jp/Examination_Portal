@@ -2,20 +2,16 @@ package com.example.examination_portal.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.examination_portal.R;
-import com.example.examination_portal.TestActivity;
+import com.example.examination_portal.organizer.TestActivity;
 import com.example.examination_portal.model.Group;
 
 import java.util.List;
