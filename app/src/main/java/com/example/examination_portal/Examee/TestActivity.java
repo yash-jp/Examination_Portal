@@ -1,4 +1,4 @@
-package com.example.examination_portal.organizer;
+package com.example.examination_portal.Examee;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;

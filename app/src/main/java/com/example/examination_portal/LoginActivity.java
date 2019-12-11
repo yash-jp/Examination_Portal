@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.examination_portal.Examee.EGroupActivity;
 import com.example.examination_portal.model.Property;
 import com.example.examination_portal.organizer.GroupActivity;
 import com.google.android.material.snackbar.Snackbar;
@@ -129,12 +130,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 //                    write code to go to next page
                     if(message.equals("success")){
-                        Intent intent = new Intent(context,GroupActivity.class);
-                        editor.putString(Property.user_email,useremail);
+
+                        if(jsonObject.getString("user_type").equals("stu")){
+                            Intent intent = new Intent(context, EGroupActivity.class);
+                            editor.putString(Property.user_email,useremail);
+                            editor.putString(Property.user_type,"stu");
 
 //                        committing the changes
-                        editor.commit();
-                        startActivity(intent);
+                            editor.commit();
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(context,GroupActivity.class);
+                            editor.putString(Property.user_email,useremail);
+                            editor.putString(Property.user_type,"org");
+//                        committing the changes
+                            editor.commit();
+                            startActivity(intent);
+                        }
+
                     }else{
                         final Snackbar snackbar = Snackbar.make(root, "Not valid username and/or password", Snackbar.LENGTH_INDEFINITE);
                                 snackbar.setAction("OK", new View.OnClickListener() {

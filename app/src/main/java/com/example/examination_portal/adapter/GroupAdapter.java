@@ -2,6 +2,7 @@ package com.example.examination_portal.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.examination_portal.R;
-import com.example.examination_portal.organizer.TestActivity;
+import com.example.examination_portal.Examee.TestActivity;
 import com.example.examination_portal.model.Group;
 
 import java.util.List;
@@ -21,14 +22,14 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
     private List<Group> groupList;
     private Context context;
 
-//    SharedPreferences sharedPreferences;
-//    SharedPreferences.Editor editor;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     public GroupAdapter(List<Group> groupList,Context context) {
         this.groupList = groupList;
         this.context = context;
 
-//        sharedPreferences = context.getApplicationContext().getSharedPreferences("UserPref",0);
+        sharedPreferences = context.getApplicationContext().getSharedPreferences("UserPref",0);
 //        editor = sharedPreferences.edit();
     }
 
@@ -66,10 +67,17 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
 
         @Override
         public void onClick(View view) {
-//            Toast.makeText(context,groupList.get(getAdapterPosition()).getGroupName(),Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(context, TestActivity.class);
-            intent.putExtra("group_id",groupList.get(getAdapterPosition()).getGroupID());
-            context.startActivity(intent);
+            if(sharedPreferences.getString("user_type",null).equals("stu")){
+                Intent intent = new Intent(context, TestActivity.class);
+                intent.putExtra("group_id",groupList.get(getAdapterPosition()).getGroupID());
+                context.startActivity(intent);
+            }else{
+                Intent intent = new Intent(context, TestActivity.class);
+                intent.putExtra("group_id",groupList.get(getAdapterPosition()).getGroupID());
+                context.startActivity(intent);
+            }
+
+
         }
     }
 }

@@ -12,9 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Examee.EQuestionActivity"></activity>
+        <activity android:name=".Examee.EGroupActivity"></activity>
+        <activity android:name=".Examee.EQuestionActivity" />
         <activity android:name=".organizer.QuestionActivity" />
-        <activity android:name=".organizer.TestActivity" />
+        <activity android:name=".Examee.TestActivity" />
         <activity android:name=".organizer.GroupActivity" />
 
         <meta-data
