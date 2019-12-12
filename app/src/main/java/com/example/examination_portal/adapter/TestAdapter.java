@@ -38,7 +38,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestHolder>{
     @Override
     public TestHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.group_row, parent, false);
+                .inflate(R.layout.test_row, parent, false);
 
         return new TestHolder(itemView);
     }
@@ -46,7 +46,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestHolder>{
     @Override
     public void onBindViewHolder(@NonNull TestHolder holder, int position) {
         Test test = testList.get(position);
-        holder.grtvName.setText(test.getTestName());
+        holder.trtvName.setText(test.getTestName());
     }
 
     @Override
@@ -56,14 +56,14 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestHolder>{
 
     public class TestHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView grtvName;
+        public TextView trtvName;
 
         public TestHolder(@NonNull View itemView) {
             super(itemView);
-            grtvName = itemView.findViewById(R.id.gretName);
+            trtvName = itemView.findViewById(R.id.trtvName);
 
 //            setting onclick listener on recyclerview textview
-            grtvName.setOnClickListener(this);
+            trtvName.setOnClickListener(this);
         }
 
         @Override

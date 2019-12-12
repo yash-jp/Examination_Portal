@@ -6,35 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".organizer.TestActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/ll"
-        android:layout_margin="10dp">
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:hint="Test Name"
-            android:id="@+id/taetTestName"
-            android:layout_weight="1"></EditText>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/tabtnTestAdd"
-            android:text="Add"
-            android:layout_weight=".5">
-        </Button>
-    </LinearLayout>
-
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/tarv"></androidx.recyclerview.widget.RecyclerView>
+        android:id="@+id/etarv"></androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_alignParentBottom="true"

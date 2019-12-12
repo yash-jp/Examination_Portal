@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".organizer.ResultActivity">
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:id="@+id/chart">
+    </com.github.mikephil.charting.charts.PieChart>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"

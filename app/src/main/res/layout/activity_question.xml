@@ -6,9 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".organizer.QuestionActivity">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD QUESTION"
+        android:id="@+id/qabtnAdd"
+        android:layout_margin="5sp"></Button>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/qabtnAdd"
+        android:layout_margin="5sp"
         android:id="@+id/qarr"
         android:background="@color/colorSecondary"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView

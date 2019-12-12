@@ -1,6 +1,7 @@
 package com.example.examination_portal.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
@@ -22,6 +24,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.examination_portal.Examee.EGroupActivity;
+import com.example.examination_portal.Examee.EQuestionActivity;
+import com.example.examination_portal.Examee.EResultActivity;
 import com.example.examination_portal.R;
 import com.example.examination_portal.model.Property;
 import com.example.examination_portal.model.Question;
@@ -159,6 +164,37 @@ public class EQuestionAdapter extends RecyclerView.Adapter<EQuestionAdapter.EQue
                     try{
                         JSONObject jsonObject = new JSONObject(response);
                         String success = jsonObject.getString("success");
+
+                        if(success.equals("1")){
+                            AlertDialog.Builder builder = new AlertDialog.Builder(
+                                    context);
+                            builder.setTitle("Test Submitted");
+                            builder.setMessage("ThankYou, you can check your result in result tab");
+                            builder.setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,
+                                                            int which) {
+                                            Intent intent = new Intent(context, EResultActivity.class);
+                                            context.startActivity(intent);
+                                        }
+                                    });
+                            builder.show();
+                        }else{
+                            AlertDialog.Builder builder = new AlertDialog.Builder(
+                                    context);
+                            builder.setTitle("Not Submitted");
+                            builder.setMessage("Please conact subject faculty!");
+                            builder.setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,
+                                                            int which) {
+                                            Intent intent = new Intent(context, EGroupActivity.class);
+                                            context.startActivity(intent);
+                                        }
+                                    });
+                            builder.show();
+                        }
+
 //                        loading.setVisibility(View.GONE);
 //                        Log.e("loginActivity", "onResponse: "+success);
 

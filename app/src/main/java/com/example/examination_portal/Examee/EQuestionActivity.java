@@ -127,6 +127,8 @@ public class EQuestionActivity extends AppCompatActivity {
                 try{
                     JSONArray jsonArray = new JSONArray(response);
 
+                    if(jsonArray.length()>0){
+
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 //                        Log.e("QuestionActivity",jsonObject.toString());
@@ -144,6 +146,21 @@ public class EQuestionActivity extends AppCompatActivity {
                     }
                     initialization();
                     eventsManagement();
+                    }else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(
+                                EQuestionActivity.this);
+                        builder.setTitle("Message");
+                        builder.setMessage("No test found!");
+                        builder.setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        Intent intent = new Intent(EQuestionActivity.this,EGroupActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                        builder.show();
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();

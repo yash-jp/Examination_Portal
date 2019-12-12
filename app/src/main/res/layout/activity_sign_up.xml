@@ -92,7 +92,7 @@
         android:hint="Please enter Name"
         android:layout_below="@+id/saetConfirmPassword"
         android:layout_marginHorizontal="20sp"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:id="@+id/saetOrgName"></EditText>
 
     <Button

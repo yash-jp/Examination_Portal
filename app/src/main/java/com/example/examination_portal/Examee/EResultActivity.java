@@ -152,7 +152,7 @@ public class EResultActivity extends AppCompatActivity {
         YAxis y = erachart.getAxisRight();
         y.setAxisMinimum(0f);
         erachart.invalidate();
-        erachart.animateY(500);
+        erachart.animateY(2500);
     }
 
     private void getResult() {

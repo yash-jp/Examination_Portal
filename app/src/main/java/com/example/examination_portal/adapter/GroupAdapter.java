@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.examination_portal.Examee.ETestActivity;
 import com.example.examination_portal.R;
 import com.example.examination_portal.organizer.TestActivity;
 import com.example.examination_portal.model.Group;
@@ -68,7 +69,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
         @Override
         public void onClick(View view) {
             if(sharedPreferences.getString("user_type",null).equals("stu")){
-                Intent intent = new Intent(context, TestActivity.class);
+                Intent intent = new Intent(context, ETestActivity.class);
                 intent.putExtra("group_id",groupList.get(getAdapterPosition()).getGroupID());
                 context.startActivity(intent);
             }else{

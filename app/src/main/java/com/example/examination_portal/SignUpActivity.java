@@ -1,8 +1,10 @@
 package com.example.examination_portal;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.examination_portal.Examee.EQuestionActivity;
 import com.example.examination_portal.model.Property;
 
 import org.json.JSONException;
@@ -111,7 +114,19 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     String success = jsonObject.getString("success");
                     loading.setVisibility(View.GONE);
                     Log.e("loginActivity", "onResponse: "+success);
-
+                    AlertDialog.Builder builder = new AlertDialog.Builder(
+                            SignUpActivity.this);
+                    builder.setTitle("Message");
+                    builder.setMessage("Sign up successful, please Login");
+                    builder.setPositiveButton("OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                    builder.show();
 //                    write code to go to next page
 
                 } catch (JSONException e) {

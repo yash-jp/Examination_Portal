@@ -1,6 +1,8 @@
 package com.example.examination_portal.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
@@ -23,6 +26,8 @@ import com.example.examination_portal.R;
 import com.example.examination_portal.model.Group;
 import com.example.examination_portal.model.Property;
 import com.example.examination_portal.model.Question;
+import com.example.examination_portal.organizer.QuestionActivity;
+import com.example.examination_portal.organizer.TestActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,14 +39,16 @@ import java.util.Map;
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.QuestionHolder> {
     private List<Question> questionList;
     private Context context;
+    private int testID;
 
 //   APIs
     private String URL_QUESTION_UPDATE = Property.domain+"updateQuestion.php";
     private String URL_QUESTION_DELETE =Property.domain+"deleteQuestion.php";
 
-    public QuestionAdapter(List<Question> questionList, Context context) {
+    public QuestionAdapter(List<Question> questionList, Context context,int testID) {
         this.questionList = questionList;
         this.context = context;
+        this.testID = testID;
     }
 
     @NonNull
@@ -94,7 +101,38 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             public void onResponse(String response) {
                 try{
                     JSONObject jsonObject = new JSONObject(response);
-                    String success = jsonObject.getString("message");
+                    String success = jsonObject.getString("success");
+
+                    if(success.equals("1")){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(
+                                context);
+                        builder.setTitle("Message");
+                        builder.setMessage("Question deleted");
+                        builder.setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(context, QuestionActivity.class);
+                                        intent.putExtra("test_id",testID);
+                                        context.startActivity(intent);
+                                    }
+                                });
+                        builder.show();
+                    }else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(
+                                context);
+                        builder.setTitle("Message");
+                        builder.setMessage("Please try again!");
+                        builder.setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        builder.show();
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -128,7 +166,41 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             public void onResponse(String response) {
                 try{
                     JSONObject jsonObject = new JSONObject(response);
-                    String success = jsonObject.getString("message");
+                    String success = jsonObject.getString("success");
+
+                    //                    on success update the recyclerview
+                    if(success.equals("1")){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(
+                                context);
+                        builder.setTitle("Message");
+                        builder.setMessage("Question Updated");
+                        builder.setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(context, QuestionActivity.class);
+                                        intent.putExtra("test_id",testID);
+                                        context.startActivity(intent);
+                                    }
+                                });
+                        builder.show();
+                    }else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(
+                                context);
+                        builder.setTitle("Message");
+                        builder.setMessage("Please try again!");
+                        builder.setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        builder.show();
+                    }
+
+//                    testAdapter.notifyDataSetChanged();
 
                 } catch (JSONException e) {
                     e.printStackTrace();

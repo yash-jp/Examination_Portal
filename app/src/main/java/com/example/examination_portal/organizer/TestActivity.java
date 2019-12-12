@@ -1,16 +1,21 @@
 package com.example.examination_portal.organizer;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -40,12 +45,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView tarv;
     private TestAdapter testAdapter;
+    private EditText taetTestName;
+    private Button tabtnTestAdd;
 
     private List<Test> testList = new ArrayList<>();
     private String URL_SHOWTEST =Property.domain+"showTests.php";
+    private String URL_ADDTEST = Property.domain+"addTest.php";
     Intent intent;
 
 //    SHAREDPREFERENCE
@@ -110,10 +118,13 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void eventsManagement() {
+        tabtnTestAdd.setOnClickListener(this);
     }
 
     private void initialization() {
         tarv = findViewById(R.id.tarv);
+        tabtnTestAdd = findViewById(R.id.tabtnTestAdd);
+        taetTestName = findViewById(R.id.taetTestName);
 
         Log.e("TestActivity","size - "+this.testList.size());
         testAdapter = new TestAdapter(testList,this);
@@ -166,5 +177,103 @@ public class TestActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.tabtnTestAdd:{
+                if(doValidation()){
+                    addTest();
+                }
+            }
+        }
+    }
+
+    private void addTest() {
+        final String test_name = taetTestName.getText().toString().trim();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_ADDTEST, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
+//                    loading.setVisibility(View.GONE);
+//                    Log.e("groupActivity", "onResponse: "+success);
+
+//                    on success update the recyclerview
+                    if(success.equals("1")){
+                            AlertDialog.Builder builder = new AlertDialog.Builder(
+                                    TestActivity.this);
+                            builder.setTitle("Message");
+                            builder.setMessage("Test Added!");
+                            builder.setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,
+                                                            int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            builder.show();
+                    }else{
+                                AlertDialog.Builder builder = new AlertDialog.Builder(
+                                        TestActivity.this);
+                                builder.setTitle("Message");
+                                builder.setMessage("Please try again!");
+                                builder.setPositiveButton("OK",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog,
+                                                                int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                builder.show();
+                    }
+                    getAllTests();
+                    testAdapter.notifyDataSetChanged();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("groupActivity", error.getMessage().toString());
+//                loading.setVisibility(View.GONE);
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("test_group_id",String.valueOf(intent.getIntExtra("group_id",0)));
+                params.put("test_name",test_name);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    private boolean doValidation() {
+        if(taetTestName.getText().toString().equals("")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(
+                    TestActivity.this);
+            builder.setTitle("Message");
+            builder.setMessage("Please enter test name!");
+            builder.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            builder.show();
+            return false;
+        }else{
+            return true;
+        }
     }
 }
