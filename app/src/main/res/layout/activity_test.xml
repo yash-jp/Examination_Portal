@@ -4,11 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Examee.TestActivity">
+    tools:context=".organizer.TestActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/tarr"></androidx.recyclerview.widget.RecyclerView>
+        android:id="@+id/tarv"></androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/navigation"
+        android:id="@+id/navigation"
+        android:background="#ffffff"></com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </RelativeLayout>

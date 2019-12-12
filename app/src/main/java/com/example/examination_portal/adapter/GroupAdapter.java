@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.examination_portal.R;
-import com.example.examination_portal.Examee.TestActivity;
+import com.example.examination_portal.organizer.TestActivity;
 import com.example.examination_portal.model.Group;
 
 import java.util.List;

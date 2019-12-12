@@ -1,5 +1,6 @@
 package com.example.examination_portal.organizer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -11,9 +12,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.RecoverySystem;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -22,10 +25,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.examination_portal.Examee.EGroupActivity;
+import com.example.examination_portal.Examee.EResultActivity;
+import com.example.examination_portal.LoginActivity;
 import com.example.examination_portal.R;
 import com.example.examination_portal.adapter.GroupAdapter;
 import com.example.examination_portal.model.Group;
 import com.example.examination_portal.model.Property;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -50,7 +57,7 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
-
+    BottomNavigationView bottomNavigationView;
 
 
 
@@ -129,6 +136,51 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         garv.setLayoutManager(mLayoutManager);
         garv.setItemAnimator(new DefaultItemAnimator());
         garv.setAdapter(groupAdapter);
+
+        bottomNavigationView = findViewById(R.id.navigation);
+
+        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
+                Intent intent;
+                switch (menuItem.getItemId()){
+                    case R.id.profile:{
+                        Toast.makeText(GroupActivity.this,"PROFILE COMING SOON",Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
+                    case R.id.groups:{
+                        if(sharedPreferences.getString(Property.user_type,"null").equals("stu")){
+                            intent = new Intent(GroupActivity.this,EGroupActivity.class);
+                            startActivity(intent);
+                        }else{
+                            intent = new Intent(GroupActivity.this, GroupActivity.class);
+                            startActivity(intent);
+                        }
+                        break;
+                    }
+
+                    case R.id.result:{
+                        if(sharedPreferences.getString(Property.user_type,"null").equals("stu")){
+                            intent = new Intent(GroupActivity.this, EResultActivity.class);
+                            startActivity(intent);
+                        }else{
+                            intent = new Intent(GroupActivity.this, ResultActivity.class);
+                            startActivity(intent);
+                        }
+                        break;
+                    }
+
+                    case R.id.logout:{
+                        SharedPreferences preferences = getSharedPreferences("UserPref", 0);
+                        preferences.edit().clear().commit();
+                        intent = new Intent(GroupActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
+                }
+            }
+        });
     }
 
     private void loadData() {

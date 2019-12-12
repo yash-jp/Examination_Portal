@@ -4,7 +4,7 @@ public class Property {
 
 
 //    Aplication Properties
-    public static final String domain = "http://10.111.28.244/android_scripts/";
+    public static final String domain = "http://10.111.43.187/android_scripts/";
     public static final String user_email = "user_email";
     public static final String user_id = "user_id";
     public static final String user_name = "user_email";
@@ -13,4 +13,5 @@ public class Property {
 
 //    GROUPS
     public static final String group_id = "group_id";
+    public static final String test_id = "test_id";
 }

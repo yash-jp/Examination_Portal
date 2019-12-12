@@ -1,5 +1,6 @@
 package com.example.examination_portal;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.examination_portal.Examee.EGroupActivity;
 import com.example.examination_portal.model.Property;
 import com.example.examination_portal.organizer.GroupActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
@@ -62,8 +65,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editor = sharedPreferences.edit();
 
         if(sharedPreferences.getString(Property.user_email,null)!=null){
-            Intent intent = new Intent(context, GroupActivity.class);
-            startActivity(intent);
+
+            if("org".equals(sharedPreferences.getString(Property.user_type,"null"))){
+                Intent intent = new Intent(context, GroupActivity.class);
+                startActivity(intent);
+            }else{
+                Intent intent = new Intent(context, EGroupActivity.class);
+                startActivity(intent);
+            }
+
         }
 
     }
@@ -85,7 +95,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         labtnLogin = findViewById(R.id.labtnLogin);
         latvForgotPassword = findViewById(R.id.latvForgotPassword);
         latvRegister = findViewById(R.id.latvRegister);
-
     }
 
     private void hideActionBar() {

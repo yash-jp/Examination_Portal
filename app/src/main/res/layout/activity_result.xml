@@ -4,12 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Examee.EQuestionActivity">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/eqarv"></androidx.recyclerview.widget.RecyclerView>
+    tools:context=".organizer.ResultActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_alignParentBottom="true"
@@ -18,5 +13,6 @@
         app:menu="@menu/navigation"
         android:id="@+id/navigation"
         android:background="#ffffff"></com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 </RelativeLayout>

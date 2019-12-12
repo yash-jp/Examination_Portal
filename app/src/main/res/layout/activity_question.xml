@@ -11,5 +11,11 @@
         android:layout_height="match_parent"
         android:id="@+id/qarr"
         android:background="@color/colorSecondary"/>
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/navigation"
+        android:id="@+id/navigation"
+        android:background="#ffffff"></com.google.android.material.bottomnavigation.BottomNavigationView>
 </RelativeLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/user"
+        android:title="PROFILE"/>
+
+    <item
+    android:id="@+id/groups"
+    android:icon="@drawable/groups"
+    android:title="GROUPS"/>
+
+    <item
+        android:id="@+id/result"
+        android:icon="@drawable/result"
+        android:title="RESULT"/>
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:title="LOGOUT"/>
+
+
+
+</menu>

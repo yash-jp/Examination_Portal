@@ -12,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.examination_portal.Examee.EQuestionActivity;
-import com.example.examination_portal.Examee.TestActivity;
-import com.example.examination_portal.model.Question;
 import com.example.examination_portal.organizer.QuestionActivity;
 import com.example.examination_portal.R;
 import com.example.examination_portal.model.Test;
@@ -73,7 +71,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.TestHolder>{
 //            Toast.makeText(context,groupList.get(getAdapterPosition()).getGroupName(),Toast.LENGTH_LONG).show();
             if(sharedPreferences.getString("user_type",null).equals("stu")){
                 Intent intent = new Intent(context, EQuestionActivity.class);
-                intent.putExtra("test_id",testList.get(getAdapterPosition()).getTestID());
+                    intent.putExtra("test_id",testList.get(getAdapterPosition()).getTestID());
                 context.startActivity(intent);
             }else{
                 Intent intent = new Intent(context, QuestionActivity.class);
